@@ -1,0 +1,12 @@
+# Turn on the rewrite engine
+RewriteEngine On
+
+# Check if the requested path is not a file
+RewriteCond %{REQUEST_FILENAME} !-f
+# Check if the requested path is not a directory
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rewrite URLs like 'your-article-title-123' to 'single_article.php?id=123'
+# The [NC] flag makes the rule case-insensitive.
+# The [L] flag stops processing other rules if this one is a match.
+RewriteRule ^([a-zA-Z0-9_-]+)-([0-9]+)$ single_article.php?id=$2 [NC,L]
